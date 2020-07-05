@@ -1,25 +1,9 @@
 import Yaml from 'js-yaml';
 import env from 'react-native-config';
 
+import { HealthcareAuthority } from '../../healthcareAuthority';
+
 const { AUTHORITIES_YAML_ROUTE } = env;
-
-type Coordinates = {
-  latitude: number;
-  longitude: number;
-};
-
-// From API
-export type HealthcareAuthority = {
-  name: string;
-  bounds: {
-    ne: Coordinates;
-    sw: Coordinates;
-  };
-  org_id: string;
-  cursor_url: string;
-  public_api: string;
-  internal_id: string;
-};
 
 const getHealthcareAuthoritiesApi = async (
   yamlUrl: string = AUTHORITIES_YAML_ROUTE,

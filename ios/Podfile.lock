@@ -1,6 +1,4 @@
 PODS:
-  - "@mauron85_react-native-background-geolocation (0.6.3)":
-    - React
   - Alamofire (4.9.1)
   - boost-for-react-native (1.63.0)
   - BVLinearGradient (2.5.6):
@@ -287,7 +285,6 @@ PODS:
   - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
-  - "@mauron85_react-native-background-geolocation (from `../node_modules/@mauron85/react-native-background-geolocation`)"
   - Alamofire (~> 4.9.1)
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -357,8 +354,6 @@ SPEC REPOS:
     - ZIPFoundation
 
 EXTERNAL SOURCES:
-  "@mauron85_react-native-background-geolocation":
-    :path: "../node_modules/@mauron85/react-native-background-geolocation"
   BVLinearGradient:
     :path: "../node_modules/react-native-linear-gradient"
   DoubleConversion:
@@ -463,7 +458,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  "@mauron85_react-native-background-geolocation": fa34ab82e94212be16ef6e75c32bcb707b0a1524
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
