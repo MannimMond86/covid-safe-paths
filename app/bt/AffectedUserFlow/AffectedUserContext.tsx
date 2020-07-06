@@ -1,5 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 
+import { HealthAuthority } from '../../healthAuthority';
+
 interface AffectedUserContextState {
   healthAuthority: HealthAuthority;
   code: string;
