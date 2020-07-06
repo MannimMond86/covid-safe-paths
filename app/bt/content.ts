@@ -1,8 +1,4 @@
-import {
-  StrategyCopyContentHook,
-  StrategyAssets,
-  StrategyInterpolatedCopyContentHook,
-} from '../tracingStrategy';
+import { StrategyCopyContentHook, StrategyAssets } from '../tracingStrategy';
 
 import { Icons, Images } from '../assets';
 
@@ -14,15 +10,6 @@ export const btAssets: StrategyAssets = {
   shareDiagnosisBackground: Images.EmptyPathBackground,
   shareDiagnosisIcon: Icons.Heart,
   exportPublishIcon: Icons.Bell,
-};
-
-export const useBTInterpolatedCopyContent: StrategyInterpolatedCopyContentHook = (
-  t,
-) => {
-  return {
-    exportPublishBody: (name: string) =>
-      t('export.publish_consent_body_bluetooth', { name }),
-  };
 };
 
 export const useBTCopyContent: StrategyCopyContentHook = (t) => {

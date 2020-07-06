@@ -3,11 +3,7 @@ import { PermissionsProvider } from './PermissionsContext';
 import Home from './Home';
 import ExportStack from './ExportStack';
 import { subscribeToExposureEvents } from './exposureInfo';
-import {
-  useGPSCopyContent,
-  useGPSInterpolatedCopyContent,
-  gpsAssets,
-} from './content';
+import { useGPSCopyContent, gpsAssets } from './content';
 
 const gpsStrategy: TracingStrategy = {
   name: 'bt',
@@ -17,7 +13,6 @@ const gpsStrategy: TracingStrategy = {
   affectedUserFlow: ExportStack,
   assets: gpsAssets,
   useCopy: useGPSCopyContent,
-  useInterpolatedCopy: useGPSInterpolatedCopyContent,
 };
 
 export default gpsStrategy;

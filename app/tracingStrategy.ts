@@ -10,7 +10,6 @@ export interface TracingStrategy {
   affectedUserFlow: () => JSX.Element;
   assets: StrategyAssets;
   useCopy: StrategyCopyContentHook;
-  useInterpolatedCopy: StrategyInterpolatedCopyContentHook;
 }
 
 export interface StrategyAssets {
@@ -49,10 +48,3 @@ export interface StrategyCopyContent {
   settingsLoggingInactive: string;
 }
 
-export type StrategyInterpolatedCopyContentHook = (
-  t: TFunction,
-) => StrategyInterpolatedCopyContent;
-
-export interface StrategyInterpolatedCopyContent {
-  exportPublishBody: (name: string) => string;
-}

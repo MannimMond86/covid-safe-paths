@@ -4,6 +4,7 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 
+import { AffectedUserProvider } from './AffectedUserContext';
 import Start from './Start';
 import CodeInput from './CodeInput';
 import Complete from './Complete';
@@ -27,27 +28,35 @@ const SCREEN_OPTIONS = {
 };
 
 const ExportStack = (): JSX.Element => (
-  <Stack.Navigator
-    mode='modal'
-    screenOptions={{
-      ...SCREEN_OPTIONS,
-      cardStyleInterpolator: fade,
-      gestureEnabled: false,
-    }}
-    initialRouteName={Screens.ExportIntro}>
-    <Stack.Screen name={Screens.AffectedUserStart} component={Start} />
-    <Stack.Screen name={Screens.AffectedUserCodeInput} component={CodeInput} />
-    <Stack.Screen
-      name={Screens.AffectedUserPublishConsent}
-      component={PublishConsent}
-    />
-    <Stack.Screen
-      name={Screens.AffectedUserConfirmUpload}
-      component={ConfirmUpload}
-    />
-    <Stack.Screen name={Screens.AffectedUserExportDone} component={CodeInput} />
-    <Stack.Screen name={Screens.AffectedUserComplete} component={Complete} />
-  </Stack.Navigator>
+  <AffectedUserProvider>
+    <Stack.Navigator
+      mode='modal'
+      screenOptions={{
+        ...SCREEN_OPTIONS,
+        cardStyleInterpolator: fade,
+        gestureEnabled: false,
+      }}
+      initialRouteName={Screens.ExportIntro}>
+      <Stack.Screen name={Screens.AffectedUserStart} component={Start} />
+      <Stack.Screen
+        name={Screens.AffectedUserCodeInput}
+        component={CodeInput}
+      />
+      <Stack.Screen
+        name={Screens.AffectedUserPublishConsent}
+        component={PublishConsent}
+      />
+      <Stack.Screen
+        name={Screens.AffectedUserConfirmUpload}
+        component={ConfirmUpload}
+      />
+      <Stack.Screen
+        name={Screens.AffectedUserExportDone}
+        component={CodeInput}
+      />
+      <Stack.Screen name={Screens.AffectedUserComplete} component={Complete} />
+    </Stack.Navigator>
+  </AffectedUserProvider>
 );
 
 export default ExportStack;

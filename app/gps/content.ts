@@ -1,8 +1,4 @@
-import {
-  StrategyAssets,
-  StrategyCopyContentHook,
-  StrategyInterpolatedCopyContentHook,
-} from '../tracingStrategy';
+import { StrategyAssets, StrategyCopyContentHook } from '../tracingStrategy';
 
 import { Icons, Images } from '../assets';
 
@@ -14,15 +10,6 @@ export const gpsAssets: StrategyAssets = {
   shareDiagnosisBackground: Images.MultipleCrossPathBackground,
   shareDiagnosisIcon: Icons.BellYellow,
   exportPublishIcon: Icons.Publish,
-};
-
-export const useGPSInterpolatedCopyContent: StrategyInterpolatedCopyContentHook = (
-  t,
-) => {
-  return {
-    exportPublishBody: (name: string) =>
-      t('export.publish_consent_body', { name }),
-  };
 };
 
 export const useGPSCopyContent: StrategyCopyContentHook = (t) => {

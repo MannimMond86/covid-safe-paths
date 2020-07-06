@@ -3,11 +3,7 @@ import * as BTNativeModule from './nativeModule';
 import { PermissionsProvider } from './PermissionsContext';
 import Home from './Home';
 import AffectedUserFlow from './AffectedUserFlow';
-import {
-  useBTCopyContent,
-  useBTInterpolatedCopyContent,
-  btAssets,
-} from './content';
+import { useBTCopyContent, btAssets } from './content';
 
 const btStrategy: TracingStrategy = {
   name: 'bt',
@@ -17,7 +13,6 @@ const btStrategy: TracingStrategy = {
   affectedUserFlow: AffectedUserFlow,
   assets: btAssets,
   useCopy: useBTCopyContent,
-  useInterpolatedCopy: useBTInterpolatedCopyContent,
 };
 
 export { BTNativeModule };

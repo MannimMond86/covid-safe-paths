@@ -14,6 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
+import { useAffectedUserContext } from './AffectedUserContext';
 
 import { Screens } from '../../navigation';
 import { Icons } from '../../assets';
@@ -30,7 +31,7 @@ const CodeInputScreen = (): JSX.Element => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const [code, setCode] = useState<string>('');
+  const { healthAuthority, code, setCode } = useAffectedUserContext();
   const [isCheckingCode, setIsCheckingCode] = useState(false);
   const [codeInvalid, setCodeInvalid] = useState(false);
 
@@ -42,21 +43,14 @@ const CodeInputScreen = (): JSX.Element => {
     }
   };
 
-  const selectedAuthority = {
-    name: 'HA',
-  };
-
-  const validateCode = async () => {
+  const handleOnPressNext = async () => {
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
       const valid = code === '12345678';
 
       if (valid) {
-        navigation.navigate(Screens.AffectedUserPublishConsent, {
-          selectedAuthority,
-          code,
-        });
+        navigation.navigate(Screens.AffectedUserPublishConsent);
       } else {
         setCodeInvalid(true);
       }
@@ -92,7 +86,7 @@ const CodeInputScreen = (): JSX.Element => {
 
           <Typography use='body1'>
             {t('export.code_input_body_bluetooth', {
-              name: selectedAuthority.name,
+              name: healthAuthority.name,
             })}
           </Typography>
 
@@ -125,7 +119,7 @@ const CodeInputScreen = (): JSX.Element => {
             disabled={code.length < CODE_LENGTH}
             loading={isCheckingCode}
             label={t('common.next')}
-            onPress={validateCode}
+            onPress={handleOnPressNext}
           />
         </View>
       </KeyboardAvoidingView>

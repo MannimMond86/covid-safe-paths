@@ -6,7 +6,6 @@ import {
   TracingStrategy,
   StrategyCopyContent,
   StrategyAssets,
-  StrategyInterpolatedCopyContent,
 } from '../tracingStrategy';
 
 export default Factory.define<TracingStrategy>(() => ({
@@ -16,9 +15,9 @@ export default Factory.define<TracingStrategy>(() => ({
   },
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: HomeScreen,
+  affectedUserFlow: AffectedUserFlow,
   assets: testStrategyAssets,
   useCopy: () => testStrategyCopy,
-  useInterpolatedCopy: () => testInterpolatedStrategyCopy,
 }));
 
 const PermissionsProvider = ({
@@ -33,10 +32,13 @@ const HomeScreen = () => {
   return <View testID={'home-screen'} />;
 };
 
+const AffectedUserFlow = () => {
+  return <View testID={'affected-user-flow'} />;
+};
+
 export const testStrategyCopy: StrategyCopyContent = {
   aboutHeader: 'aboutHeader',
   detailedHistoryWhatThisMeansPara: 'detailedHistoryWhatThisMeansPara',
-  exportCodeTitle: 'exportCodeTitle',
   exportCompleteBody: 'exportCompleteBody',
   exportPublishButtonSubtitle: 'exportPublishButtonSubtitle',
   exportPublishTitle: 'exportPublishTitle',
@@ -70,7 +72,3 @@ export const testStrategyAssets: StrategyAssets = {
   exportPublishIcon: '',
 };
 
-export const testInterpolatedStrategyCopy: StrategyInterpolatedCopyContent = {
-  exportCodeBody: (name: string) => `exportCodeBody ${name}`,
-  exportPublishBody: (name: string) => `exportPublishBody ${name}`,
-};

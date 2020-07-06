@@ -3,8 +3,6 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  TextStyle,
-  TouchableOpacity,
   BackHandler,
   SafeAreaView,
 } from 'react-native';
@@ -19,27 +17,14 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Icons } from '../../assets';
 import { Colors, Typography as TypographyStyles } from '../../styles';
 
-interface BackgroundContainerProps {
-  children: JSX.Element;
-}
-
-const BackgroundContainer = ({
-  children,
-}: BackgroundContainerProps): JSX.Element => {
-  return <View style={styles.container}>{children}</View>;
-};
-
 interface ExportTemplateProps {
   headline: string;
   body: string;
   onNext: () => void;
   nextButtonLabel: string;
-  buttonSubtitle?: string;
   onClose?: () => void;
   icon?: string;
   buttonLoading?: boolean;
-  bodyLinkText?: string;
-  bodyLinkOnPress?: () => void;
   ignoreModalStyling?: boolean; // So first screen can be slightly different in tabs
 }
 
@@ -48,15 +33,14 @@ export const ExportTemplate = ({
   body,
   onNext,
   nextButtonLabel,
-  buttonSubtitle,
   onClose,
   icon,
   buttonLoading,
-  bodyLinkText,
-  bodyLinkOnPress,
   ignoreModalStyling, // So first screen can be slightly different in tabs
 }: ExportTemplateProps): JSX.Element => {
   useStatusBarEffect('dark-content');
+
+  console.log('FOOFOFOFOFOFOOF');
 
   useFocusEffect(() => {
     if (onClose) {
@@ -72,8 +56,8 @@ export const ExportTemplate = ({
   });
 
   return (
-    <BackgroundContainer>
-      <SafeAreaView style={{ flex: 1, marginBottom: 24 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.faintGray }}>
+      <View style={styles.container}>
         {onClose && (
           <View style={styles.header}>
             <IconButton icon={Icons.Close} size={22} onPress={onClose} />
@@ -83,48 +67,18 @@ export const ExportTemplate = ({
           alwaysBounceVertical={false}
           style={{ flexGrow: 1 }}
           contentContainerStyle={{
-            // Opt for center alignment without icons,
-            // top alignment with icon.
             justifyContent: icon ? undefined : 'center',
             flexGrow: 1,
             paddingBottom: 24,
           }}>
-          {/* Add top padding if we can afford it */}
-          {<View style={{ maxHeight: 20, flexGrow: 1 }} />}
           {icon && (
             <View style={styles.iconContainerCircle}>
               <SvgXml xml={icon as string} width={30} height={30} />
             </View>
           )}
 
-          <Typography
-            style={
-              [
-                styles.exportSectionTitles,
-                { color: Colors.primaryHeaderText },
-              ] as TextStyle
-            }>
-            {headline as string}
-          </Typography>
-          <View style={{ height: 8 }} />
-          <Typography
-            style={
-              [styles.contentText, { color: Colors.primaryText }] as TextStyle
-            }>
-            {body}
-          </Typography>
-          {bodyLinkText && (
-            <TouchableOpacity onPress={bodyLinkOnPress}>
-              <Typography
-                style={{
-                  color: Colors.linkTextInvert,
-                  textDecorationLine: 'underline',
-                }}
-                use='body1'>
-                {bodyLinkText}
-              </Typography>
-            </TouchableOpacity>
-          )}
+          <Typography style={styles.header}>{headline}</Typography>
+          <Typography style={styles.contentText}>{body}</Typography>
         </ScrollView>
 
         <Button
@@ -134,31 +88,23 @@ export const ExportTemplate = ({
           loading={buttonLoading}
         />
 
-        {buttonSubtitle && (
-          <Typography
-            style={{ paddingTop: 10, color: Colors.white }}
-            use='body3'>
-            {buttonSubtitle as string}
-          </Typography>
-        )}
         {/* Add extra padding on the bottom if available for phone. 
            Interlays with the flexGrow on the scroll view to ensure that scrolling content has priority. */}
         {!ignoreModalStyling && <View style={{ maxHeight: 20, flexGrow: 1 }} />}
-      </SafeAreaView>
-    </BackgroundContainer>
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.faintGray,
+    backgroundColor: Colors.primaryViolet,
     flex: 1,
     paddingHorizontal: 24,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    padding: 12,
+    ...TypographyStyles.header2,
+    color: Colors.white,
   },
   iconContainerCircle: {
     width: 70,
@@ -168,10 +114,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 30,
-  },
-  exportSectionTitles: {
-    ...TypographyStyles.header2,
-    color: Colors.white,
   },
   contentText: {
     ...TypographyStyles.secondaryContent,
