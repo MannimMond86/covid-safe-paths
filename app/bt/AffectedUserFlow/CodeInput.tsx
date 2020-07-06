@@ -14,7 +14,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-import exitWarningAlert from './exitWarningAlert';
 
 import { Screens } from '../../navigation';
 import { Icons } from '../../assets';
@@ -82,7 +81,7 @@ const CodeInputScreen = (): JSX.Element => {
           <IconButton
             icon={Icons.Close}
             size={22}
-            onPress={() => exitWarningAlert(navigation, Screens.Settings)}
+            onPress={() => navigation.navigate(Screens.Settings)}
           />
         </View>
 

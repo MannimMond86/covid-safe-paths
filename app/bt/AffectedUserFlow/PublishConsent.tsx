@@ -1,29 +1,20 @@
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import {
-  NavigationScreenProp,
-  NavigationState,
-  NavigationParams,
-  NavigationRoute,
-} from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationRoute } from 'react-navigation';
 
-import exitWarningAlert from '../../views/Export/exitWarningAlert';
 import ExportTemplate from '../../views/Export/ExportTemplate';
 import { useStrategyContent } from '../../TracingStrategyContext';
-import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
 import * as BTNativeModule from '../nativeModule';
 
 interface PublishConsentProps {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   route: NavigationRoute;
 }
 
-const PublishConsent = ({
-  navigation,
-  route,
-}: PublishConsentProps): JSX.Element => {
+const PublishConsent = ({ route }: PublishConsentProps): JSX.Element => {
+  const navigation = useNavigation();
   const [isConsenting, setIsConsenting] = useState(false);
   const { t } = useTranslation();
 
@@ -33,11 +24,8 @@ const PublishConsent = ({
     StrategyAssets,
   } = useStrategyContent();
 
-  const exportPublishNextRoute = isGPS
-    ? Screens.ExportConfirmUpload
-    : Screens.ExportComplete;
-  const exportExitRoute = isGPS ? Screens.ExportStart : Screens.Settings;
-  const onClose = () => exitWarningAlert(navigation, exportExitRoute);
+  const exportPublishNextRoute = Screens.ExportComplete;
+  const onClose = () => navigation.navigate(Screens.Settings);
 
   const selectedAuthority = route.params?.selectedAuthority;
   const code = route.params?.code;

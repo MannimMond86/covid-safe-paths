@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, NativeModules } from 'react-native';
 
-import exitWarningAlert from './exitWarningAlert';
 import ExportTemplate from './ExportTemplate';
 import exportUploadApi from '../../api/export/exportUploadApi';
 import { Screens } from '../../navigation';
@@ -11,7 +10,7 @@ import { Icons } from '../../assets';
 export const ExportComplete = ({ navigation, route }) => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
-  const onClose = () => exitWarningAlert(navigation);
+  const onClose = () => navigation.navigate(Screens.Settings);
 
   const { selectedAuthority, code } = route.params;
 
