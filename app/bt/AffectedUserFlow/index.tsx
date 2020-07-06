@@ -4,16 +4,13 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 
-import ExportCodeInput from './ExportCodeInput';
-import ExportComplete from './ExportComplete';
-import ExportConfirmUpload from './ExportConfirmUpload';
-import ExportIntro from './ExportIntro';
-import ExportLocationConsent from './ExportLocationConsent';
-import ExportPublishConsent from './ExportPublishConsent';
-import ExportSelectHA from './ExportSelectHA';
-import { PublishConsent } from '../PublishConsent';
+import Start from './Start';
+import CodeInput from './CodeInput';
+import Complete from './Complete';
+import ConfirmUpload from './ConfirmUpload';
+import PublishConsent from './PublishConsent';
 
-import { Screens } from '../navigation';
+import { Screens } from '../../navigation';
 
 const Stack = createStackNavigator();
 
@@ -37,25 +34,20 @@ const ExportStack = (): JSX.Element => (
       cardStyleInterpolator: fade,
       gestureEnabled: false,
     }}
-    initialRouteName={isGPS ? Screens.ExportSelectHA : Screens.ExportIntro}>
-    <Stack.Screen name={Screens.ExportIntro} component={ExportIntro} />
-    <Stack.Screen name={Screens.ExportSelectHA} component={ExportSelectHA} />
-    <Stack.Screen name={Screens.ExportCodeInput} component={ExportCodeInput} />
+    initialRouteName={Screens.ExportIntro}>
+    <Stack.Screen name={Screens.AffectedUserStart} component={Start} />
+    <Stack.Screen name={Screens.AffectedUserCodeInput} component={CodeInput} />
     <Stack.Screen
-      name={Screens.ExportLocationConsent}
-      component={ExportLocationConsent}
-    />
-    <Stack.Screen name={Screens.PublishConsent} component={PublishConsent} />
-    <Stack.Screen
-      name={Screens.ExportPublishConsent}
-      component={ExportPublishConsent}
+      name={Screens.AffectedUserPublishConsent}
+      component={PublishConsent}
     />
     <Stack.Screen
-      name={Screens.ExportConfirmUpload}
-      component={ExportConfirmUpload}
+      name={Screens.AffectedUserConfirmUpload}
+      component={ConfirmUpload}
     />
-    <Stack.Screen name={Screens.ExportDone} component={ExportCodeInput} />
-    <Stack.Screen name={Screens.ExportComplete} component={ExportComplete} />
+    fu
+    <Stack.Screen name={Screens.AffectedUserExportDone} component={CodeInput} />
+    <Stack.Screen name={Screens.AffectedUserComplete} component={Complete} />
   </Stack.Navigator>
 );
 

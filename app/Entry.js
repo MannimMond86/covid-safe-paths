@@ -38,7 +38,6 @@ import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
 import NotificationsPermissions from './views/onboarding/NotificationsPermissions';
 import LocationsPermissions from './views/onboarding/LocationsPermissions';
 
-import ExportStack from './navigation/ExportStack';
 import { Screens, Stacks } from './navigation';
 
 import ExposureHistoryContext from './ExposureHistoryContext';
@@ -295,6 +294,7 @@ const PartnersStack = () => (
 
 export const Entry = () => {
   const onboardingComplete = useSelector(isOnboardingCompleteSelector);
+  const { tracingStrategy } = useTracingStrategyContext();
 
   return (
     <NavigationContainer>
@@ -307,7 +307,7 @@ export const Entry = () => {
         {/* Modal View: */}
         <Stack.Screen
           name={Screens.ExportFlow}
-          component={ExportStack}
+          component={tracingStrategy.AffectedUserFlow}
           options={{
             ...TransitionPresets.ModalSlideFromBottomIOS,
           }}

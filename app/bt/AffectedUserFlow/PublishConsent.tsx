@@ -20,7 +20,7 @@ interface PublishConsentProps {
   route: NavigationRoute;
 }
 
-export const PublishConsent = ({
+const PublishConsent = ({
   navigation,
   route,
 }: PublishConsentProps): JSX.Element => {

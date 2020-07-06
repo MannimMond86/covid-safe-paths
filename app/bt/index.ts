@@ -2,6 +2,7 @@ import { TracingStrategy } from '../tracingStrategy';
 import * as BTNativeModule from './nativeModule';
 import { PermissionsProvider } from './PermissionsContext';
 import Home from './Home';
+import AffectedUserFlow from './AffectedUserFlow';
 import {
   useBTCopyContent,
   useBTInterpolatedCopyContent,
@@ -13,6 +14,7 @@ const btStrategy: TracingStrategy = {
   exposureInfoSubscription: BTNativeModule.subscribeToExposureEvents,
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: Home,
+  affectedUserFlow: AffectedUserFlow,
   assets: btAssets,
   useCopy: useBTCopyContent,
   useInterpolatedCopy: useBTInterpolatedCopyContent,
