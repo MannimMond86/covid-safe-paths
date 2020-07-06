@@ -12,9 +12,6 @@ import ExportLocationConsent from '../views/Export/ExportLocationConsent';
 import ExportPublishConsent from '../views/Export/ExportPublishConsent';
 import ExportSelectHA from '../views/Export/ExportSelectHA';
 
-import { PublishConsent } from '../bt/PositiveDiagnosis/PublishConsent';
-
-import { isGPS } from '../COVIDSafePathsConfig';
 import { Screens } from '../navigation';
 
 const Stack = createStackNavigator();
@@ -39,7 +36,7 @@ const ExportStack = (): JSX.Element => (
       cardStyleInterpolator: fade,
       gestureEnabled: false,
     }}
-    initialRouteName={isGPS ? Screens.ExportSelectHA : Screens.ExportIntro}>
+    initialRouteName={Screens.ExportSelectHA}>
     <Stack.Screen name={Screens.ExportIntro} component={ExportIntro} />
     <Stack.Screen name={Screens.ExportSelectHA} component={ExportSelectHA} />
     <Stack.Screen name={Screens.ExportCodeInput} component={ExportCodeInput} />
@@ -47,7 +44,6 @@ const ExportStack = (): JSX.Element => (
       name={Screens.ExportLocationConsent}
       component={ExportLocationConsent}
     />
-    <Stack.Screen name={Screens.PublishConsent} component={PublishConsent} />
     <Stack.Screen
       name={Screens.ExportPublishConsent}
       component={ExportPublishConsent}

@@ -294,7 +294,7 @@ const PartnersStack = () => (
 
 export const Entry = () => {
   const onboardingComplete = useSelector(isOnboardingCompleteSelector);
-  const { tracingStrategy } = useTracingStrategyContext();
+  const tracingStrategy = useTracingStrategyContext();
 
   return (
     <NavigationContainer>
@@ -307,7 +307,7 @@ export const Entry = () => {
         {/* Modal View: */}
         <Stack.Screen
           name={Screens.ExportFlow}
-          component={tracingStrategy.AffectedUserFlow}
+          component={tracingStrategy.affectedUserFlow}
           options={{
             ...TransitionPresets.ModalSlideFromBottomIOS,
           }}

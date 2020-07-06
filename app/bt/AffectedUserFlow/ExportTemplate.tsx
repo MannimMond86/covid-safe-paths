@@ -5,42 +5,28 @@ import {
   View,
   TextStyle,
   TouchableOpacity,
+  BackHandler,
   SafeAreaView,
 } from 'react-native';
-import { BackHandler } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import { SvgXml } from 'react-native-svg';
 
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-
-import { Icons } from '../../assets';
-import { Colors, Typography as TypographyStyles } from '../../styles';
 import { useStatusBarEffect } from '../../navigation';
 import { useFocusEffect } from '@react-navigation/native';
 
+import { Icons } from '../../assets';
+import { Colors, Typography as TypographyStyles } from '../../styles';
+
 interface BackgroundContainerProps {
-  lightTheme?: string;
   children: JSX.Element;
 }
 
 const BackgroundContainer = ({
-  lightTheme,
   children,
 }: BackgroundContainerProps): JSX.Element => {
-  if (lightTheme) {
-    return <View style={styles.container}>{children}</View>;
-  }
-  return (
-    <LinearGradient
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      colors={[Colors.secondaryBlue, Colors.primaryBlue]}
-      style={styles.container}>
-      {children}
-    </LinearGradient>
-  );
+  return <View style={styles.container}>{children}</View>;
 };
 
 interface ExportTemplateProps {
@@ -48,14 +34,10 @@ interface ExportTemplateProps {
   body: string;
   onNext: () => void;
   nextButtonLabel: string;
-  // Optionals:
   buttonSubtitle?: string;
   onClose?: () => void;
   icon?: string;
-  lightTheme?: string;
   buttonLoading?: boolean;
-  // We can consider instead using the trans component:
-  // https://react.i18next.com/latest/trans-component
   bodyLinkText?: string;
   bodyLinkOnPress?: () => void;
   ignoreModalStyling?: boolean; // So first screen can be slightly different in tabs
@@ -66,19 +48,16 @@ export const ExportTemplate = ({
   body,
   onNext,
   nextButtonLabel,
-  // Optionals:
   buttonSubtitle,
   onClose,
   icon,
-  lightTheme,
   buttonLoading,
-  // We can consider instead using the trans component:
-  // https://react.i18next.com/latest/trans-component
   bodyLinkText,
   bodyLinkOnPress,
   ignoreModalStyling, // So first screen can be slightly different in tabs
 }: ExportTemplateProps): JSX.Element => {
-  useStatusBarEffect(lightTheme ? 'dark-content' : 'light-content');
+  useStatusBarEffect('dark-content');
+
   useFocusEffect(() => {
     if (onClose) {
       const handleBackPress = () => {
@@ -93,7 +72,7 @@ export const ExportTemplate = ({
   });
 
   return (
-    <BackgroundContainer lightTheme={lightTheme}>
+    <BackgroundContainer>
       <SafeAreaView style={{ flex: 1, marginBottom: 24 }}>
         {onClose && (
           <View style={styles.header}>
@@ -122,7 +101,7 @@ export const ExportTemplate = ({
             style={
               [
                 styles.exportSectionTitles,
-                lightTheme && { color: Colors.primaryHeaderText },
+                { color: Colors.primaryHeaderText },
               ] as TextStyle
             }>
             {headline as string}
@@ -130,10 +109,7 @@ export const ExportTemplate = ({
           <View style={{ height: 8 }} />
           <Typography
             style={
-              [
-                styles.contentText,
-                lightTheme && { color: Colors.primaryText },
-              ] as TextStyle
+              [styles.contentText, { color: Colors.primaryText }] as TextStyle
             }>
             {body}
           </Typography>

@@ -119,7 +119,7 @@ const CodeInput = ({ code, length, setCode }) => {
 
 export const ExportSelectHA = ({ route, navigation }) => {
   const { t } = useTranslation();
-  const { InterpolatedStrategyCopy, StrategyCopy } = useStrategyContent();
+  const { InterpolatedStrategyCopy } = useStrategyContent();
 
   const exportCodeInputNextRoute = isGPS
     ? Screens.ExportLocationConsent
@@ -190,11 +190,13 @@ export const ExportSelectHA = ({ route, navigation }) => {
           </View>
           <View style={{ flex: 1, marginBottom: 20 }}>
             <Typography use='headline2'>
-              {StrategyCopy.exportCodeTitle}
+              {t('export.code_input_title')}
             </Typography>
             <View style={{ height: 8 }} />
             <Typography use='body1'>
-              {InterpolatedStrategyCopy.exportCodeBody(selectedAuthority.name)}
+              {t('export.code_input_body', {
+                name: selectedAuthority.name,
+              })}
             </Typography>
             {/* These flex grows allow for a lot of flexibility across device sizes */}
             <View style={{ maxHeight: 60, flexGrow: 1 }} />

@@ -15,6 +15,7 @@ import { ExposureHistoryProvider } from './ExposureHistoryContext';
 interface TracingStrategyContextState {
   name: string;
   homeScreenComponent: ({ testID }: { testID: string }) => JSX.Element;
+  affectedUserFlow: () => JSX.Element;
   assets: StrategyAssets;
   useCopy: StrategyCopyContentHook;
   useInterpolatedCopy: StrategyInterpolatedCopyContentHook;
@@ -40,6 +41,7 @@ export const TracingStrategyProvider = ({
       value={{
         name: strategy.name,
         homeScreenComponent: strategy.homeScreenComponent,
+        affectedUserFlow: strategy.affectedUserFlow,
         assets: strategy.assets,
         useCopy: strategy.useCopy,
         useInterpolatedCopy: strategy.useInterpolatedCopy,

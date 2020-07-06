@@ -45,7 +45,6 @@ const ExportStack = (): JSX.Element => (
       name={Screens.AffectedUserConfirmUpload}
       component={ConfirmUpload}
     />
-    fu
     <Stack.Screen name={Screens.AffectedUserExportDone} component={CodeInput} />
     <Stack.Screen name={Screens.AffectedUserComplete} component={Complete} />
   </Stack.Navigator>

@@ -28,7 +28,6 @@ export type StrategyCopyContentHook = (t: TFunction) => StrategyCopyContent;
 export interface StrategyCopyContent {
   aboutHeader: string;
   detailedHistoryWhatThisMeansPara: string;
-  exportCodeTitle: string;
   exportCompleteBody: string;
   exportPublishButtonSubtitle: string;
   exportPublishTitle: string;
@@ -55,6 +54,5 @@ export type StrategyInterpolatedCopyContentHook = (
 ) => StrategyInterpolatedCopyContent;
 
 export interface StrategyInterpolatedCopyContent {
-  exportCodeBody: (name: string) => string;
   exportPublishBody: (name: string) => string;
 }

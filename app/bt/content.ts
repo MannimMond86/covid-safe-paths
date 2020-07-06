@@ -20,8 +20,6 @@ export const useBTInterpolatedCopyContent: StrategyInterpolatedCopyContentHook =
   t,
 ) => {
   return {
-    exportCodeBody: (name: string) =>
-      t('export.code_input_body_bluetooth', { name }),
     exportPublishBody: (name: string) =>
       t('export.publish_consent_body_bluetooth', { name }),
   };
@@ -34,7 +32,6 @@ export const useBTCopyContent: StrategyCopyContentHook = (t) => {
       'history.what_does_this_mean_para_bluetooth',
     ),
     exportButtonSubtitle: '',
-    exportCodeTitle: t('export.code_input_title_bluetooth'),
     exportCompleteBody: t('export.complete_body_bluetooth'),
     exportPublishButtonSubtitle: '',
     exportPublishTitle: t('export.publish_consent_title_bluetooth'),

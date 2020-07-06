@@ -13,7 +13,7 @@ export const ExportIntro = (): JSX.Element => {
   const navigation = useNavigation();
   const { StrategyCopy } = useStrategyContent();
 
-  const onNext = () => navigation.navigate(Screens.ExportCodeInput);
+  const onNext = () => navigation.navigate(Screens.AffectedUserCodeInput);
   const onClose = () => navigation.goBack();
 
   return (
