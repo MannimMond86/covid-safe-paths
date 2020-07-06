@@ -8,8 +8,6 @@ import {
   TextInput,
   View,
   Platform,
-  NativeSyntheticEvent,
-  TextInputKeyPressEventData,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -20,7 +18,12 @@ import exitWarningAlert from './exitWarningAlert';
 
 import { Screens } from '../../navigation';
 import { Icons } from '../../assets';
-import { Spacing, Colors, Typography as TypographyStyles } from '../../styles';
+import {
+  Spacing,
+  Colors,
+  Outlines,
+  Typography as TypographyStyles,
+} from '../../styles';
 
 const CODE_LENGTH = 8;
 
@@ -40,10 +43,9 @@ const CodeInputScreen = (): JSX.Element => {
     }
   };
 
-  const exportCodeInputNextRoute = Screens.PublishConsent;
-  const exportExitRoute = Screens.Settings;
-
-  const selectedAuthority = {};
+  const selectedAuthority = {
+    name: 'HA',
+  };
 
   const validateCode = async () => {
     setIsCheckingCode(true);
@@ -52,7 +54,7 @@ const CodeInputScreen = (): JSX.Element => {
       const valid = code === '12345678';
 
       if (valid) {
-        navigation.navigate(exportCodeInputNextRoute, {
+        navigation.navigate(Screens.AffectedUserPublishConsent, {
           selectedAuthority,
           code,
         });
@@ -80,7 +82,7 @@ const CodeInputScreen = (): JSX.Element => {
           <IconButton
             icon={Icons.Close}
             size={22}
-            onPress={() => exitWarningAlert(navigation, exportExitRoute)}
+            onPress={() => exitWarningAlert(navigation, Screens.Settings)}
           />
         </View>
 
@@ -110,7 +112,6 @@ const CodeInputScreen = (): JSX.Element => {
                 returnKeyType={'done'}
                 onChangeText={handleOnChangeText}
                 blurOnSubmit={false}
-                onFocus={() => {}}
               />
             </View>
 
@@ -136,8 +137,7 @@ const CodeInputScreen = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 44,
-    paddingHorizontal: 24,
+    padding: Spacing.medium,
     backgroundColor: Colors.primaryBackgroundFaintShade,
   },
   headerContainer: {
@@ -154,8 +154,6 @@ const styles = StyleSheet.create({
   headerIcons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 12,
-    paddingLeft: 0,
   },
   codeInputContainer: {
     flex: 1,
@@ -163,10 +161,9 @@ const styles = StyleSheet.create({
   },
   codeInput: {
     ...TypographyStyles.primaryTextInput,
+    ...Outlines.textInput,
     padding: Spacing.small,
     textAlign: 'center',
-    borderWidth: 2,
-    borderRadius: 10,
   },
 });
 
