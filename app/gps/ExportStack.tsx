@@ -15,7 +15,7 @@ import ExportSelectHA from '../views/Export/ExportSelectHA';
 import { PublishConsent } from '../bt/PositiveDiagnosis/PublishConsent';
 
 import { isGPS } from '../COVIDSafePathsConfig';
-import { Screens } from './index';
+import { Screens } from '../navigation';
 
 const Stack = createStackNavigator();
 

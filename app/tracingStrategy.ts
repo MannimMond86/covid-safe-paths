@@ -7,6 +7,7 @@ export interface TracingStrategy {
   exposureInfoSubscription: ExposureInfoSubscription;
   permissionsProvider: ({ children }: { children: JSX.Element }) => JSX.Element;
   homeScreenComponent: ({ testID }: { testID: string }) => JSX.Element;
+  affectedUserFlow: () => JSX.Element;
   assets: StrategyAssets;
   useCopy: StrategyCopyContentHook;
   useInterpolatedCopy: StrategyInterpolatedCopyContentHook;
